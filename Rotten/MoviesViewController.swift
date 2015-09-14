@@ -72,7 +72,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
             if (error != nil) {
                 self.progressHUD.dismiss()
-                var refreshAlert = UIAlertView()
+                self.movies?.removeAll()
+                self.tableView.reloadData()
+                let refreshAlert = UIAlertView()
                 refreshAlert.title = "Rotten Dead?"
                 refreshAlert.message = "Network error, cannot connect to rotten server."
                 refreshAlert.addButtonWithTitle("OK")
